@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Android/WhatsappDownloaderTry/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.205" />
         <entry key="..\:/Projects/Android/WhatsappDownloaderTry/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Projects/Android/WhatsappDownloaderTry/app/src/main/res/layout/activity_show_image.xml" value="0.25" />
         <entry key="..\:/Projects/Android/WhatsappDownloaderTry/app/src/main/res/layout/recycler_view_items.xml" value="0.25" />

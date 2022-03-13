@@ -17,8 +17,9 @@
 
     <ImageView
         android:id="@+id/playButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:tint="#100F0F"
         app:layout_constraintBottom_toBottomOf="@+id/mainImage"
         app:layout_constraintEnd_toEndOf="@+id/mainImage"
         app:layout_constraintStart_toStartOf="@+id/mainImage"
