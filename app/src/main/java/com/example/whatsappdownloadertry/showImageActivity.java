@@ -59,16 +59,55 @@ public class showImageActivity extends AppCompatActivity {
         }
 
         if(source.toString().endsWith(".mp4"))
+        {
             binding.playButtonFull.setVisibility(View.VISIBLE);
+
+            binding.mainVideoPlay.setVisibility(View.GONE);
+            binding.imageView.setVisibility(View.VISIBLE);
+            binding.pauseButtonFull.setVisibility(View.GONE);
+
+            binding.mainVideoPlay.setVideoURI(source);
+
+            binding.playButtonFull.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    binding.mainVideoPlay.setVisibility(View.VISIBLE);
+                    binding.imageView.setVisibility(View.GONE);
+                    binding.playButtonFull.setVisibility(View.GONE);
+                    binding.mainVideoPlay.start();
+                    binding.pauseButtonFull.setVisibility(View.VISIBLE);
+                }
+            });
+
+            binding.pauseButtonFull.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    binding.playButtonFull.setVisibility(View.VISIBLE);
+                    binding.mainVideoPlay.pause();
+                    binding.pauseButtonFull.setVisibility(View.GONE);
+
+                    binding.mainVideoPlay.setVisibility(View.GONE);
+                    binding.imageView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
         else
+        {
             binding.playButtonFull.setVisibility(View.INVISIBLE);
+        }
+
 
         Uri finalSource = source;
         binding.downloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(showImageActivity.this, "Downloading is started", Toast.LENGTH_SHORT).show();
-                startCopyFiles(finalSource);
+
+                //Main program.
+                //Toast.makeText(showImageActivity.this, "Downloading is started", Toast.LENGTH_SHORT).show();
+                //startCopyFiles(finalSource);
+
+                //For my mom.
+                Toast.makeText(showImageActivity.this, "Mummy dusra button par click karo.:-)", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -112,10 +151,10 @@ public class showImageActivity extends AppCompatActivity {
     }
 
     public void shareVideo(String filepath){
-        Intent shareintent=new Intent("android.intent.action.SEND");
-        shareintent.setType("video/mp4");
-        shareintent.putExtra("android.intent.extra.STREAM", Uri.parse(filepath));
-        startActivity(Intent.createChooser(shareintent,"share"));
+        Intent intent=new Intent("android.intent.action.SEND");
+        intent.setType("video/mp4");
+        intent.putExtra("android.intent.extra.STREAM", Uri.parse(filepath));
+        startActivity(Intent.createChooser(intent,"share"));
 
     }
 
@@ -144,8 +183,8 @@ public class showImageActivity extends AppCompatActivity {
 
         return Uri.fromFile(new File(destination));
     }
-    public static void copyFile(String inputPath, String outputPath) {
 
+    public static void copyFile(String inputPath, String outputPath) {
         InputStream in = null;
         OutputStream out = null;
         try {
@@ -159,7 +198,6 @@ public class showImageActivity extends AppCompatActivity {
                 out.write(buffer, 0, read);
             }
             in.close();
-
             out.flush();
             out.close();
 

@@ -15,15 +15,38 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <VideoView
+        android:id="@+id/videoPreview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/playButton"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:tint="#100F0F"
+        android:tint="#15E1E1"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/mainImage"
         app:layout_constraintEnd_toEndOf="@+id/mainImage"
         app:layout_constraintStart_toStartOf="@+id/mainImage"
         app:layout_constraintTop_toTopOf="@+id/mainImage"
         app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
+
+    <ImageView
+        android:id="@+id/pauseButton"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:tint="#15E1E1"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/videoPreview"
+        app:layout_constraintEnd_toEndOf="@+id/videoPreview"
+        app:layout_constraintStart_toStartOf="@+id/videoPreview"
+        app:layout_constraintTop_toTopOf="@+id/videoPreview"
+        app:srcCompat="@drawable/ic_baseline_pause_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

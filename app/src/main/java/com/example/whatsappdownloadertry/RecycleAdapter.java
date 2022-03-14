@@ -10,6 +10,7 @@ import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,12 +42,45 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ItemsVie
     @Override
     public void onBindViewHolder(@NonNull ItemsViewHolder holder, int position) {
 
-
-        Glide.with(context).load(items.get(position).uri).centerCrop().into(holder.binding.mainImage);
-        if(items.get(position).image)
-            holder.binding.playButton.setVisibility(View.INVISIBLE);
+        if(items.get(position).image){
+            holder.binding.playButton.setVisibility(View.GONE);
+            holder.binding.videoPreview.setVisibility(View.GONE);
+            holder.binding.mainImage.setVisibility(View.VISIBLE);
+            Glide.with(context).load(items.get(position).uri).centerCrop().into(holder.binding.mainImage);
+        }
         else
+        {
             holder.binding.playButton.setVisibility(View.VISIBLE);
+            holder.binding.videoPreview.setVisibility(View.GONE);
+            holder.binding.mainImage.setVisibility(View.VISIBLE);
+            holder.binding.pauseButton.setVisibility(View.GONE);
+
+            Glide.with(context).load(items.get(position).uri).centerCrop().into(holder.binding.mainImage);
+            holder.binding.videoPreview.setVideoURI(items.get(position).uri);
+
+            holder.binding.playButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                        holder.binding.videoPreview.setVisibility(View.VISIBLE);
+                        holder.binding.mainImage.setVisibility(View.GONE);
+                        holder.binding.playButton.setVisibility(View.GONE);
+                        holder.binding.videoPreview.start();
+                        holder.binding.pauseButton.setVisibility(View.VISIBLE);
+                }
+            });
+
+            holder.binding.pauseButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.binding.playButton.setVisibility(View.VISIBLE);
+                    holder.binding.videoPreview.pause();
+                    holder.binding.pauseButton.setVisibility(View.GONE);
+
+                    holder.binding.videoPreview.setVisibility(View.GONE);
+                    holder.binding.mainImage.setVisibility(View.VISIBLE);
+                }
+            });
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
