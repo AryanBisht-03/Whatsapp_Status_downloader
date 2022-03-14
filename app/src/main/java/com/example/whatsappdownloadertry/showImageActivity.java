@@ -103,11 +103,11 @@ public class showImageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Main program.
-                //Toast.makeText(showImageActivity.this, "Downloading is started", Toast.LENGTH_SHORT).show();
-                //startCopyFiles(finalSource);
-
+                Toast.makeText(showImageActivity.this, "Downloading is started", Toast.LENGTH_SHORT).show();
+                startCopyFiles(finalSource);
+                Toast.makeText(showImageActivity.this, "Downloading is Completed and stored at DCIM/Camera", Toast.LENGTH_SHORT).show();
                 //For my mom.
-                Toast.makeText(showImageActivity.this, "Mummy dusra button par click karo.:-)", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(showImageActivity.this, "Mummy dusra button par click karo.:-)", Toast.LENGTH_SHORT).show();
             }
         });
 
