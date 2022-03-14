@@ -43,6 +43,7 @@
         android:layout_height="75dp"
         android:tint="#15E1E1"
         android:visibility="gone"
+        android:alpha="0.5"
         app:layout_constraintBottom_toBottomOf="@+id/videoPreview"
         app:layout_constraintEnd_toEndOf="@+id/videoPreview"
         app:layout_constraintStart_toStartOf="@+id/videoPreview"
