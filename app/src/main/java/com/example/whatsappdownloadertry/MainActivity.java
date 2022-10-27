@@ -35,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
     private final int WRITE_EXTERNAL_STORAGE=200;
 
+        // calling this activity's function to
+        // use ActionBar utility methods
+        ActionBar actionBar = getSupportActionBar();
+
+        // providing title for the ActionBar
+        actionBar.setTitle("  Whatsapp status ");
+
+        // providing subtitle for the ActionBar
+        actionBar.setSubtitle("Aryan Bisht");
+
+
+        // methods to display the icon in the ActionBar
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +125,35 @@ public class MainActivity extends AppCompatActivity {
         RecycleAdapter adapter = new RecycleAdapter(this,items);
         binding.recyclerView.setAdapter(adapter);
     }
+ @Override
+    public boolean onCreateOptionsMenu( Menu menu ) {
 
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // methods to control the operations that will
+    // happen when user clicks on the action buttons
+    @Override
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
+
+        switch (item.getItemId()){
+            case R.id.b1:
+                String path = Environment.getExternalStorageDirectory() + "/" + "DCIM" + "/";
+                Uri uri = Uri.parse(path);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setDataAndType(uri, "*/*");
+                startActivity(intent);                break;
+            case R.id.b2:
+                Intent intent2 = new Intent(Intent.ACTION_SEND);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+                intent2.putExtra(Intent.EXTRA_TEXT,"https://github.com/AryanBisht-03/Whatsapp_Status_downloader");
+                intent2.setType("text/plain");
+                startActivity(Intent.createChooser(intent2, "Share APP"));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
