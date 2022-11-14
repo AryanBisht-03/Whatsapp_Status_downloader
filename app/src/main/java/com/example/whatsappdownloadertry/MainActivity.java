@@ -1,6 +1,7 @@
 package com.example.whatsappdownloadertry;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -15,6 +16,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Whatsapp status ");
+
+        // providing subtitle for the ActionBar
+        actionBar.setSubtitle("Aryan Bisht");
+        // methods to display the icon in the ActionBar
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
         {
@@ -118,5 +130,29 @@ public class MainActivity extends AppCompatActivity {
         if(grantResults.length > 0  && grantResults[0] == PackageManager.PERMISSION_GRANTED ){
             checkForLocation();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu ) {
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // methods to control the operations that will
+    // happen when user clicks on the action buttons
+    @Override
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
+
+        switch (item.getItemId()){
+            case R.id.b2:
+                Intent intent2 = new Intent(Intent.ACTION_SEND);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+                intent2.putExtra(Intent.EXTRA_TEXT,"https://github.com/AryanBisht-03/Whatsapp_Status_downloader");
+                intent2.setType("text/plain");
+                startActivity(Intent.createChooser(intent2, "Share APP"));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

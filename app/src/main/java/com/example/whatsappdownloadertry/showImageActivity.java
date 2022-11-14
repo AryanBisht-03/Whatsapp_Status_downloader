@@ -103,9 +103,9 @@ public class showImageActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Main program.
-                Toast.makeText(showImageActivity.this, "Downloading is started", Toast.LENGTH_SHORT).show();
+                Toast.makeText(showImageActivity.this, "Micky bhai na Downloading start kar de", Toast.LENGTH_SHORT).show();
                 startCopyFiles(finalSource);
-                Toast.makeText(showImageActivity.this, "Downloading is Completed and stored at DCIM/Camera", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(showImageActivity.this, "Downloading is Completed and stored at DCIM/Camera", Toast.LENGTH_SHORT).show();
                 //For my mom.
                 //Toast.makeText(showImageActivity.this, "Mummy dusra button par click karo.:-)", Toast.LENGTH_SHORT).show();
             }
@@ -114,6 +114,7 @@ public class showImageActivity extends AppCompatActivity {
         binding.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(showImageActivity.this, "Ha Micky! share kar le job bi kar le :-)", Toast.LENGTH_SHORT).show();
 
                 StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                 StrictMode.setVmPolicy(builder.build());
